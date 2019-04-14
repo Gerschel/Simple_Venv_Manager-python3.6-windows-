@@ -14,11 +14,11 @@ def main():
     """
     project_name = input("Enter project name:\n")
     os.chdir(venv_directory)
-    os.system(f"python -m venv {project_name}")
+    os.system(f"python -m venv {project_name}venv")
     os.chdir(launcher_location)
 
     with open(f"{project_name}.bat", "w") as bat_file:
-        bat_file.write(f'@echo off\ncmd /k"cd {venv_directory}\\{project_name} & {venv_directory}\\{project_name}\\Scripts\\activate"')
+        bat_file.write(f'@echo off\ncmd /k"cd {venv_directory}\\{project_name}venv & {venv_directory}\\{project_name}venv\\Scripts\\activate"')
 
 
 if __name__ == '__main__':
