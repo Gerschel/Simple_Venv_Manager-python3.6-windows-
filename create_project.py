@@ -1,4 +1,30 @@
 import os
+import json
+
+def load_settings():
+    """
+    Load User Settings if it exists, otherwise, will load default settings
+    """
+    cur_d = os.getcwd()
+    if os.path.exists(cur_d + "\\user_settings.json"):
+        with open(cur_d + "\\user_settings.json") as settings_file:
+            settings = json.load(settings_file)
+    else:
+        with open(cur_d + "\\default_settings.json") as settings_file:
+            settings = json.load(settings_file)
+    return settings
+
+
+def initialize_settings():
+    """
+    On first run, will create the default settings file
+    otherwise, will exit if it exists
+    """
+    cur_d = os.getcwd()
+    if os.path.exists(cur_d + "\\user_settings.json"):
+        return
+    else:
+        import make_default_settings
 
 #Settings
 user_directory = os.path.expanduser("~")
