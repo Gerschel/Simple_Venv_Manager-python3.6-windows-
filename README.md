@@ -28,3 +28,17 @@ Usage:
   * Double click the .bat file to open a command prompt in the venv created, with the venv activated.
 
 ![](simple_venv_man_v0.1.gif)
+
+
+
+Roadmap:
+  * GUI
+  * User Settings
+  * Reset to default
+  * Delete
+  * Recall each installation even if user setting changes
+
+Mockups
+
+![](mockup/mockup_main.png)
+![](mockup/mockup_settings.png)
