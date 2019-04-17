@@ -26,42 +26,45 @@ def initialize_settings():
     else:
         import make_default_settings
 
-#Settings TODO: rework main to have the initialize settings, 
-initialize_settings()
-settings = load_settings()
 
-
-def main():
-    """
+def create_venv():
+   """
     Creates a python virtual environment in a new folder called 'python_venvs'
     Creates a .bat file on the desktop used as a shortcut to launch the venv
     """
     #Create directory where all venvs will be created in if it doesn't exist
-    if not os.path.exists(settings['venv_directory']):
-        os.makedirs(settings['venv_directory'])
+    if not os.path.exists(settings['folder_name']):
+        os.makedirs(settings['folder_name'])
     
     project_name = input("Enter project name:\n")
-    os.chdir(settings['venv_directory'])
+    os.chdir(settings['folder_name'])
     
     #Check to see if project already exists, if so, give a warning
-    if not os.path.exists(settings['venv_directory'] + f"\\{project_name}{settings['file_suffix']}"):
-        os.system(f"python -m venv {project_name}{settings['file_suffix']}")
+    if not os.path.exists(settings['folder_name'] + f"\\{project_name}{settings['folder_suffix']}"):
+        os.system(f"python -m venv {project_name}{settings['folder_suffix']}")
         os.chdir(settings['launcher_location'])
         #
-        with open(f"{project_name}{settings['file_suffix']}.bat", "w") as bat_file:
-            bat_file.write(f'@echo off\ncmd /k"cd {settings["venv_directory"]}\\{project_name}{settings["file_suffix"]} & {settings["venv_directory"]}\\{project_name}{settings["file_suffix"]}\\Scripts\\activate"')
+        with open(f"{project_name}{settings['folder_suffix']}.bat", "w") as bat_file:
+            bat_file.write(f'@echo off\ncmd /k"cd {settings["folder_name"]}\\{project_name}{settings["folder_suffix"]} & {settings["folder_name"]}\\{project_name}{settings["folder_suffix"]}\\Scripts\\activate"')
         print(f"""
 Success.
-Project: "{project_name}{settings['file_suffix']}" created. 
+Project: "{project_name}{settings['folder_suffix']}" created. 
 """)
     else:
         print(f"""
-Project Name "{project_name}{settings['file_suffix']}" already exists.
+Project Name "{project_name}{settings['folder_suffix']}" already exists.
 
-To start fresh, please delete project folder "{project_name}{settings['file_suffix']}" in:
-    "{settings['venv_directory']}"
+To start fresh, please delete project folder "{project_name}{settings['folder_suffix']}" in:
+    "{settings['folder_name']}"
 """)
     input("Press Enter to exit.")
+
+def main():
+    initialize_settings()
+    settings = load_settings()
+    create_venv()
+
+ 
 
 
 if __name__ == '__main__':

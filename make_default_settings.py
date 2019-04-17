@@ -1,12 +1,12 @@
 import json
 from os.path import expanduser
 
-user_directory = expanduser("~")
+folder_location = expanduser("~")
 
-default_settings = {"user_directory" : user_directory,
-                    "venv_directory" : user_directory + "\\python_venvs",
-                    "file_suffix" : "_venv",
-                    "launcher_location": user_directory + "\\Desktop",
+default_settings = {"folder_location" : folder_location,
+                    "folder_name" : folder_location + "\\python_venvs",
+                    "folder_suffix" : "_venv",
+                    "launcher_location": folder_location + "\\Desktop",
                     }
 
 with open("default_settings.json", "w") as ds:
