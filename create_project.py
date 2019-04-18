@@ -27,8 +27,8 @@ def initialize_settings():
         import make_default_settings
 
 
-def create_venv():
-   """
+def create_venv(settings):
+    """
     Creates a python virtual environment in a new folder called 'python_venvs'
     Creates a .bat file on the desktop used as a shortcut to launch the venv
     """
@@ -40,21 +40,21 @@ def create_venv():
     os.chdir(settings['folder_name'])
     
     #Check to see if project already exists, if so, give a warning
-    if not os.path.exists(settings['folder_name'] + f"\\{project_name}{settings['folder_suffix']}"):
-        os.system(f"python -m venv {project_name}{settings['folder_suffix']}")
+    if not os.path.exists(settings['folder_name'] + f"\\{project_name}{settings['venv_folder_suffix']}"):
+        os.system(f"python -m venv {project_name}{settings['venv_folder_suffix']}")
         os.chdir(settings['launcher_location'])
         #
-        with open(f"{project_name}{settings['folder_suffix']}.bat", "w") as bat_file:
-            bat_file.write(f'@echo off\ncmd /k"cd {settings["folder_name"]}\\{project_name}{settings["folder_suffix"]} & {settings["folder_name"]}\\{project_name}{settings["folder_suffix"]}\\Scripts\\activate"')
+        with open(f"{project_name}{settings['venv_folder_suffix']}.bat", "w") as bat_file:
+            bat_file.write(f'@echo off\ncmd /k"cd {settings["folder_name"]}\\{project_name}{settings["venv_folder_suffix"]} & {settings["folder_name"]}\\{project_name}{settings["venv_folder_suffix"]}\\Scripts\\activate"')
         print(f"""
 Success.
-Project: "{project_name}{settings['folder_suffix']}" created. 
+Project: "{project_name}{settings['venv_folder_suffix']}" created. 
 """)
     else:
         print(f"""
-Project Name "{project_name}{settings['folder_suffix']}" already exists.
+Project Name "{project_name}{settings['venv_folder_suffix']}" already exists.
 
-To start fresh, please delete project folder "{project_name}{settings['folder_suffix']}" in:
+To start fresh, please delete project folder "{project_name}{settings['venv_folder_suffix']}" in:
     "{settings['folder_name']}"
 """)
     input("Press Enter to exit.")
@@ -62,7 +62,7 @@ To start fresh, please delete project folder "{project_name}{settings['folder_su
 def main():
     initialize_settings()
     settings = load_settings()
-    create_venv()
+    create_venv(settings)
 
  
 

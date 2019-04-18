@@ -5,7 +5,7 @@ folder_location = expanduser("~")
 
 default_settings = {"folder_location" : folder_location,
                     "folder_name" : folder_location + "\\python_venvs",
-                    "folder_suffix" : "_venv",
+                    "venv_folder_suffix" : "_venv",
                     "launcher_location": folder_location + "\\Desktop",
                     }
 
