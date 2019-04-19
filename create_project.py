@@ -27,7 +27,7 @@ def initialize_settings():
         import make_default_settings
 
 
-def create_venv(settings):
+def create_venv(settings, project_name=None):
     """
     Creates a python virtual environment in a new folder called 'python_venvs'
     Creates a .bat file on the desktop used as a shortcut to launch the venv
@@ -35,8 +35,8 @@ def create_venv(settings):
     #Create directory where all venvs will be created in if it doesn't exist
     if not os.path.exists(settings['folder_name']):
         os.makedirs(settings['folder_name'])
-    
-    project_name = input("Enter project name:\n")
+    # *! project_name commented out as we move towards a GUI for it's input
+    #project_name = input("Enter project name:\n")
     os.chdir(settings['folder_name'])
     
     #Check to see if project already exists, if so, give a warning

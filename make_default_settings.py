@@ -11,5 +11,3 @@ default_settings = {"folder_location" : folder_location,
 
 with open("default_settings.json", "w") as ds:
     json.dump(default_settings, ds)
-
-print("default_settings.json created")
